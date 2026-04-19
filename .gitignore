@@ -1,0 +1,46 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Node
+node_modules/
+npm-debug.log*
+.npm
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Claude Code local settings (keep project settings, ignore personal overrides)
+.claude/settings.local.json
+
+# Figma CLI daemon artifacts
+~/.figma-cli-daemon.pid
+~/.figma-ds-cli/
+
+# Build / dist
+dist/
+build/
+*.js.map
+
+# Logs
+*.log
+logs/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS temp
+Thumbs.db
+
+# Other
+prompts/*
+pdfs/
