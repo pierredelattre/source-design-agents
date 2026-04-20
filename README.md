@@ -1,4 +1,4 @@
-# source-agents
+# source-design-agents
 
 AI agents and tools for product designers, UI designers, and design system managers. Orchestrated by Claude Code.
 
@@ -7,8 +7,10 @@ AI agents and tools for product designers, UI designers, and design system manag
 | Path | Purpose |
 |------|---------|
 | `figma-cli/` | CLI that controls Figma Desktop directly — no API key needed |
+| `bridge/` | Compiler-driven workflow for generating Figma designs from natural language — enforces DS token rules via a deterministic pipeline |
 | `agents/` | Claude Code agent definitions (one per workflow) |
 | `docs/` | Guidelines, decision records, playbooks, prompt conventions, knowledge base |
+| `pdfs/` | Design reference library (Atomic Design, DS Handbook, Kholmatova, Perez-Cruz, Idean, Henderson) |
 | `.agents/skills/` | Claude Code skill files |
 
 ## Quick start
