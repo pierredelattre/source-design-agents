@@ -133,3 +133,42 @@ Daemon runs on port 3456. Full command reference in `figma-cli/CLAUDE.md`.
 3. Run `/design-workflow setup` in Bridge to index the DS from the active Figma file.
 4. All agents that touch components depend on step 3.
 
+---
+
+## Manual setup awareness
+
+Some Figma / Bridge setup steps are manual and may not have been done yet.
+
+Do NOT:
+- Assume `figma-cli connect` has already been run.
+- Assume `/design-workflow setup` has been executed in the active Figma file.
+- Assume environment variable paths in `agent.config.json` files are correctly set.
+
+Instead, when asked to use Figma/Bridge-related agents or tools:
+- Briefly remind the user of the relevant manual steps from `README.md` (figma-cli connect, /design-workflow setup, env paths).
+- Offer to run an env sanity check (see below) if context is missing.
+
+---
+
+## Env sanity check behaviour
+
+If the user asks for an env sanity check (e.g. "run an env sanity check for DS / Figma agents"), read:
+
+1. `README.md` — Manual setup section
+2. `agents/agent-figma-ds-sync/agent.config.json` if it exists
+3. `agents/agent-storybook-linker/agent.config.json` if it exists
+4. `agents/agent-doc-writer/agent.config.json` if it exists
+
+Then produce a concise checklist report covering:
+
+- **figma-cli**: remind the user to run `figma-cli connect` at least once per machine
+- **Bridge**: remind the user to run `/design-workflow setup` in the target Figma file
+- **Env paths**: whether `TOKEN_OUTPUT_PATH`, `STORYBOOK_STORIES_PATH`, and `DOCS_OUTPUT_PATH` are set (non-TODO values) in the relevant `agent.config.json` files
+- Any obvious misconfigurations or missing values
+
+For each missing or uncertain item, state:
+- What the user must do manually (command or file to edit)
+- Where it is documented (README section or INIT.md reference)
+
+Never guess secrets or hardcode absolute paths. Treat all env values as user-supplied configuration.
+

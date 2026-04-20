@@ -1,0 +1,22 @@
+{
+  "model": "claude-sonnet-4-6",
+  "description": "DS linter — uses figma-cli to inspect screens and component trees for token, variant, and naming violations.",
+  "figma_cli": {
+    "daemon_url": "http://localhost:3456",
+    "connection_mode": "yolo",
+    "allowed_commands": [
+      "fig-start lint",
+      "fig-start find",
+      "fig-start canvas info",
+      "fig-start var list"
+    ]
+  },
+  "env": {
+    "FIGMA_CLI_PORT": "3456"
+  },
+  "notes": [
+    "figma-cli connects via local CDP daemon — no Figma API token required.",
+    "Run 'figma-cli connect' (Yolo mode) before invoking this agent.",
+    "For CI use: set connection_mode to 'safe' and configure the Figma plugin."
+  ]
+}

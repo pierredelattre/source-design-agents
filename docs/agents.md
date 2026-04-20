@@ -8,6 +8,7 @@ Canonical list of agents in this repo. Before creating or modifying an agent, re
 |--------|---------|
 | planned | Defined, not yet implemented |
 | in-progress | Implementation started |
+| implemented | instructions.md exists, not yet tested in production |
 | stable | Implemented and tested |
 
 ---
@@ -15,63 +16,70 @@ Canonical list of agents in this repo. Before creating or modifying an agent, re
 ## Product design workflow
 
 ### agent-problem-framing
-**Status:** planned
+**Status:** implemented
 **Role:** Turns a raw product brief into a structured problem frame.
 **Input:** Free-text product brief
 **Output:** Markdown — problem statement, assumptions, risks, success metrics (JTBD format)
 **Tools:** None (pure text processing)
 **Playbook:** `docs/workflows/playbook-product-designer.md` §1
+**Examples:** `agents/agent-problem-framing/examples/`
 
 ### agent-ux-research-synthesizer
-**Status:** planned
+**Status:** implemented
 **Role:** Synthesises raw UX research into personas, journey maps, top insights, and JTBD statements using established research methods.
 **Input:** Raw research notes, method used, product context
 **Output:** Markdown — personas, journey map, top insights, JTBD statements, open questions
 **Tools:** None
 **Knowledge:** `docs/resources/ux-ui-reference.md` §2–§4
 **Playbook:** `docs/workflows/playbook-product-designer.md` §2
+**Examples:** `agents/agent-ux-research-synthesizer/examples/`
 
 ### agent-flow-builder
-**Status:** planned
+**Status:** implemented
 **Role:** Transforms user stories or backlog items into structured user flows.
 **Input:** User stories or backlog (text / Markdown)
 **Output:** Mermaid flow diagrams + screen checklists
 **Tools:** None (pure text processing)
 **Playbook:** `docs/workflows/playbook-product-designer.md` §3
+**Examples:** `agents/agent-flow-builder/examples/`
 
 ### agent-flow-qa
-**Status:** planned
+**Status:** implemented
 **Role:** Reviews a flow for missing states, error paths, and empty states.
 **Input:** Mermaid flow diagram or screen checklist
 **Output:** Markdown — coverage gaps, edge cases, recommended additions
 **Tools:** None
+**Examples:** `agents/agent-flow-qa/examples/`
 
 ---
 
 ## UI design and DS
 
 ### agent-wireframe-to-ds
-**Status:** planned
+**Status:** implemented
 **Role:** Given a screen description, proposes the best DS component combination to cover it.
 **Input:** Screen description (text) + DS knowledge (from Bridge setup)
 **Output:** CSpec YAML (Bridge format) — see ADR 001
 **Tools:** Bridge (`/design-workflow`)
 **Playbook:** `docs/workflows/playbook-product-designer.md` §4
+**Examples:** `agents/agent-wireframe-to-ds/examples/`
 
 ### agent-component-finder
-**Status:** planned
+**Status:** implemented
 **Role:** Finds DS components matching a natural language description.
 **Input:** Component description (text)
 **Output:** List of matching components with variant recommendations
 **Tools:** Bridge recipes, figma-cli (`fig-start find`)
 **Playbook:** `docs/workflows/playbook-product-designer.md` §5
+**Examples:** `agents/agent-component-finder/examples/`
 
 ### agent-variant-builder
-**Status:** planned
+**Status:** implemented
 **Role:** Generates all required variants (size, state, emphasis) for a component.
 **Input:** Component name + variant matrix
 **Output:** Figma variants via Bridge (CSpec YAML)
 **Tools:** Bridge (`/design-workflow`)
+**Examples:** `agents/agent-variant-builder/examples/`
 
 ### agent-a11y-audit
 **Status:** stable
@@ -89,27 +97,30 @@ Canonical list of agents in this repo. Before creating or modifying an agent, re
 ## Design system management
 
 ### agent-ds-strategy
-**Status:** planned
+**Status:** implemented
 **Role:** Co-builds DS vision, principles, governance model, and KPI framework grounded in the knowledge base.
 **Input:** Business context, team size, product maturity (text)
 **Output:** Markdown — DS vision document, principles, governance recommendation, KPI list, roadmap
 **Tools:** None
 **Knowledge:** `docs/resources/design-systems.md` §5–§8
+**Examples:** `agents/agent-ds-strategy/examples/`
 
 ### agent-stakeholder-comms
-**Status:** planned
+**Status:** implemented
 **Role:** Generates DS newsletters, release notes, adoption guides, and pitch decks.
 **Input:** Output type, audience, DS changes or context
 **Output:** Polished Markdown — newsletter, release notes, pitch outline, or adoption guide
 **Tools:** None
 **Knowledge:** `docs/resources/design-systems.md` §6–§7
+**Examples:** `agents/agent-stakeholder-comms/examples/`
 
 ### agent-figma-ds-sync
-**Status:** planned
+**Status:** implemented
 **Role:** Exports Figma variables/tokens to Style Dictionary JSON or CSS variables.
 **Input:** Active Figma file (via figma-cli)
 **Output:** JSON (Style Dictionary format) or CSS custom properties
 **Tools:** figma-cli (`fig-start var list`, `fig-start tokens`)
+**Examples:** `agents/agent-figma-ds-sync/examples/`
 
 ### agent-ds-linter
 **Status:** stable
@@ -123,69 +134,78 @@ Canonical list of agents in this repo. Before creating or modifying an agent, re
 **Playbook:** `docs/workflows/playbook-ds-manager.md` §2
 
 ### agent-ds-backlog-manager
-**Status:** planned
+**Status:** implemented
 **Role:** Triages component requests by impact and technical debt.
 **Input:** Request list (text / Markdown)
 **Output:** Prioritized backlog with rationale
 **Tools:** None
+**Examples:** `agents/agent-ds-backlog-manager/examples/`
 
 ### agent-ds-onboarding
-**Status:** planned
+**Status:** implemented
 **Role:** Generates a role-based onboarding path for a new designer or developer.
 **Input:** Role (designer / developer / ds-manager / pm), DS experience level, optional focus area
 **Output:** Markdown — reading path, agent map, day-1 checklist, key vocabulary
 **Tools:** None
 **Knowledge:** `docs/resources/knowledge-index.md`, `docs/resources/design-systems.md`, `docs/resources/ux-ui-reference.md`
 **Playbook:** `docs/workflows/playbook-ds-manager.md` §4
+**Examples:** `agents/agent-ds-onboarding/examples/`
 
 ### agent-usage-coach
-**Status:** planned
+**Status:** implemented
 **Role:** Recommends DS patterns in response to a screen description or maquette.
 **Input:** Screen description or Figma selection
 **Output:** Markdown — recommended patterns, anti-patterns to avoid
 **Tools:** Bridge recipes, figma-cli
+**Examples:** `agents/agent-usage-coach/examples/`
 
 ---
 
 ## Handoff and documentation
 
 ### agent-storybook-linker
-**Status:** planned
+**Status:** implemented
 **Role:** Maps Figma components to Storybook stories, flags divergences.
 **Input:** Figma component list + Storybook story list
 **Output:** Markdown map — ok / divergence / missing per component
 **Tools:** figma-cli (`fig-start export storybook`)
+**Examples:** `agents/agent-storybook-linker/examples/`
 
 ### agent-doc-writer
-**Status:** planned
+**Status:** implemented
 **Role:** Generates functional specs and DS documentation from maquettes and flows.
 **Input:** Figma maquette + flow diagram
 **Output:** Markdown — functional spec, DS usage guidelines
 **Tools:** figma-cli (for export), Bridge (for screenshots via verify)
+**Examples:** `agents/agent-doc-writer/examples/`
 
 ---
 
 ## Ops and logging
 
 ### agent-design-decision-logger
-**Status:** planned
+**Status:** implemented
 **Role:** Turns Bridge fix-workflow diffs into decision records in `docs/decisions/`.
 **Input:** Bridge fix diff (Figma correction)
+**How to trigger:** After accepting a Bridge fix that should become a global DS rule, paste the standard prompt snippet from `docs/workflows/bridge-fix-loop.md` and fill: component name, correction (`old -> new`), scope (`global` vs `local`), and reason (why this should become a rule).
 **Output:** New or updated ADR in `docs/decisions/`
 **Tools:** Bridge fix loop hook
 **Decision:** See ADR 002 for tool split; fix-loop integration documented in INIT.md §9.3
+**Examples:** `agents/agent-design-decision-logger/examples/`
 
 ### agent-experiment-designer
-**Status:** planned
+**Status:** implemented
 **Role:** Proposes A/B tests and iteration plans based on a design decision or metric.
 **Input:** Design decision or metric goal (text)
 **Output:** Markdown — test plan, measurement approach, iteration roadmap
 **Tools:** None
+**Examples:** `agents/agent-experiment-designer/examples/`
 
 ### agent-ds-librarian
-**Status:** planned
+**Status:** implemented
 **Role:** Answers DS and UX questions by referencing `docs/resources/`. Provides cited answers grounded in the knowledge base, not generic training-data advice.
 **Input:** Free-text question; optional context (product, team, DS maturity)
 **Output:** Markdown — direct answer with knowledge base citation, deeper reading pointer, related agent suggestion
 **Tools:** None
 **Knowledge:** `docs/resources/knowledge-index.md`, `docs/resources/design-systems.md`, `docs/resources/ux-ui-reference.md`
+**Examples:** `agents/agent-ds-librarian/examples/`

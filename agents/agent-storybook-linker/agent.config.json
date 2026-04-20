@@ -1,0 +1,24 @@
+{
+  "model": "claude-sonnet-4-6",
+  "description": "Storybook linker — exports Figma component data via figma-cli and maps it to Storybook stories.",
+  "figma_cli": {
+    "daemon_url": "http://localhost:3456",
+    "connection_mode": "yolo",
+    "allowed_commands": [
+      "fig-start export storybook"
+    ]
+  },
+  "storybook": {
+    "stories_path": "TODO: path to your Storybook stories directory (e.g. 'src/stories')",
+    "story_glob": "**/*.stories.{js,ts,jsx,tsx,mdx}"
+  },
+  "env": {
+    "FIGMA_CLI_PORT": "3456",
+    "STORYBOOK_STORIES_PATH": "TODO: absolute or relative path to Storybook stories"
+  },
+  "notes": [
+    "figma-cli connects via local CDP daemon — no Figma API token required.",
+    "Run 'figma-cli connect' (Yolo mode) before invoking this agent.",
+    "Set STORYBOOK_STORIES_PATH before first run."
+  ]
+}

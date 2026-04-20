@@ -1,0 +1,18 @@
+{
+  "model": "claude-sonnet-4-6",
+  "description": "Variant builder — generates all required component variants and outputs CSpec YAML for Bridge execution.",
+  "bridge": {
+    "mcp_server": "plugin:bridge-ds:figma-console",
+    "requires_setup": true,
+    "setup_command": "/design-workflow setup",
+    "compiler": "lib/compiler/compile.ts",
+    "output_format": "cspec-yaml"
+  },
+  "env": {},
+  "notes": [
+    "Bridge must be set up before this agent can resolve DS tokens.",
+    "Run '/design-workflow setup' in Bridge to index the DS from the active Figma file.",
+    "All CSpec YAML must pass through lib/compiler/compile.ts before execution.",
+    "After variants are created, run agent-a11y-audit before marking the component stable."
+  ]
+}

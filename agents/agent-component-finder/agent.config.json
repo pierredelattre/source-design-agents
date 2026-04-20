@@ -1,0 +1,25 @@
+{
+  "model": "claude-sonnet-4-6",
+  "description": "Component finder — searches the DS library by natural language description using Bridge recipes and figma-cli.",
+  "figma_cli": {
+    "daemon_url": "http://localhost:3456",
+    "connection_mode": "yolo",
+    "allowed_commands": [
+      "fig-start find"
+    ]
+  },
+  "bridge": {
+    "mcp_server": "plugin:bridge-ds:figma-console",
+    "requires_setup": true,
+    "setup_command": "/design-workflow setup",
+    "use": "recipes-search-only"
+  },
+  "env": {
+    "FIGMA_CLI_PORT": "3456"
+  },
+  "notes": [
+    "figma-cli is used for live component search in the active Figma file.",
+    "Bridge is used for recipe/pattern lookup only — this agent does not create Figma content.",
+    "Run 'figma-cli connect' and '/design-workflow setup' before first use."
+  ]
+}

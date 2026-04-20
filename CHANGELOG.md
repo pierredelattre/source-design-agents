@@ -7,6 +7,14 @@ Format: `YYYY-MM-DD | Category | Description`
 
 ## 2026-04-20
 
+### All planned agents scaffolded
+
+- Created `instructions.md` for 13 agents that had no folder: agent-problem-framing, agent-flow-builder, agent-flow-qa, agent-wireframe-to-ds, agent-component-finder, agent-variant-builder, agent-figma-ds-sync, agent-ds-backlog-manager, agent-usage-coach, agent-storybook-linker, agent-doc-writer, agent-design-decision-logger, agent-experiment-designer
+- Updated status from `planned` to `implemented` for all 18 planned agents in `docs/agents.md` (includes 5 that already had instructions.md: agent-ux-research-synthesizer, agent-ds-strategy, agent-stakeholder-comms, agent-ds-onboarding, agent-ds-librarian)
+- Added `implemented` status to legend in `docs/agents.md`
+
+---
+
 ### Consistency pass — CLAUDE.md now reflects docs/resources/
 
 - Added `docs/resources/` to the repo structure tree and memory model table in CLAUDE.md (was missing despite being established by ADR 003)

@@ -18,11 +18,45 @@ AI agents and tools for product designers, UI designers, and design system manag
 ```bash
 cd figma-cli
 npm install
-figma-cli connect        # Yolo mode (recommended) — patches Figma once
+figma-cli connect        # Direct mode (recommended) — patches Figma once, no restart needed
 figma-cli connect --safe # Safe mode — plugin-based, no binary modification
 ```
 
 See `figma-cli/CLAUDE.md` for the full command reference.
+
+## Manual setup for Figma / Bridge agents
+
+Some agents require manual setup before they can work correctly with Figma, Bridge, and the filesystem. Run these steps once per machine / file / env.
+
+### 1. Per machine (figma-cli auth)
+
+- [ ] Run `figma-cli connect`
+  - Authenticates figma-cli on this machine via CDP (Yolo mode)
+  - Required before any agent that calls Figma through figma-cli
+
+### 2. Per Figma file (Bridge setup)
+
+- [ ] In each Figma file where you want to use Bridge-based agents:
+  - Run `/design-workflow setup`
+  - This indexes the DS and prepares the file for Bridge
+
+### 3. Environment variables (per project / env)
+
+Configure the following values in the relevant `agent.config.json` files (under the `env` block). Do not commit secrets or absolute paths.
+
+- [ ] `TOKEN_OUTPUT_PATH` in `agents/agent-figma-ds-sync/agent.config.json`
+  - Folder where design token JSON / CSS variables will be written
+- [ ] `STORYBOOK_STORIES_PATH` in `agents/agent-storybook-linker/agent.config.json`
+  - Path to your Storybook stories on disk
+- [ ] `DOCS_OUTPUT_PATH` in `agents/agent-doc-writer/agent.config.json`
+  - Folder where generated specs / docs will be written
+
+### 4. Bridge fix loop to design decision logger
+
+- [ ] Wire Bridge's fix loop to `agent-design-decision-logger` as described in `INIT.md` §9.3
+  - After each accepted Bridge fix, send the diff and context to the logger agent so it can create or update decision records
+
+For a guided check of all the above, paste the prompt in `docs/prompts/env-sanity-check.md` into chat.
 
 ## Agents
 

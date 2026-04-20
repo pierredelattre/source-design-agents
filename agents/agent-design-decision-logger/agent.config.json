@@ -1,0 +1,23 @@
+{
+  "model": "claude-sonnet-4-6",
+  "description": "Design decision logger — hooks into Bridge's fix workflow to turn Figma corrections into ADRs in docs/decisions/.",
+  "bridge": {
+    "mcp_server": "plugin:bridge-ds:figma-console",
+    "requires_setup": false,
+    "use": "fix-loop-hook",
+    "hook_trigger": "bridge-fix-diff",
+    "fix_loop_reference": "docs/workflows/bridge-fix-loop.md"
+  },
+  "output": {
+    "adr_path": "docs/decisions/",
+    "adr_template": "docs/decisions/README.md",
+    "changelog_path": "CHANGELOG.md"
+  },
+  "env": {},
+  "notes": [
+    "This agent is triggered by a Bridge fix diff, not invoked directly by the user.",
+    "See docs/workflows/bridge-fix-loop.md for the fix-loop integration specification.",
+    "No figma-cli or Figma API token required — input is a text diff from Bridge.",
+    "TODO: wire the Bridge fix-loop hook to call this agent automatically (manual step)."
+  ]
+}

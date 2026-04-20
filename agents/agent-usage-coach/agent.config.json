@@ -1,0 +1,26 @@
+{
+  "model": "claude-sonnet-4-6",
+  "description": "Usage coach — recommends DS patterns and flags anti-patterns using Bridge recipes and figma-cli inspection.",
+  "figma_cli": {
+    "daemon_url": "http://localhost:3456",
+    "connection_mode": "yolo",
+    "allowed_commands": [
+      "fig-start find",
+      "fig-start lint"
+    ]
+  },
+  "bridge": {
+    "mcp_server": "plugin:bridge-ds:figma-console",
+    "requires_setup": true,
+    "setup_command": "/design-workflow setup",
+    "use": "recipes-search-only"
+  },
+  "env": {
+    "FIGMA_CLI_PORT": "3456"
+  },
+  "notes": [
+    "figma-cli is used to inspect a live Figma selection and run a quick lint pass.",
+    "Bridge is used for pattern lookup only — this agent does not create Figma content.",
+    "Run 'figma-cli connect' and '/design-workflow setup' before first use."
+  ]
+}

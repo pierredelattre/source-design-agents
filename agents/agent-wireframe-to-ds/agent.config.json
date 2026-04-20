@@ -1,0 +1,18 @@
+{
+  "model": "claude-sonnet-4-6",
+  "description": "Wireframe-to-DS agent — maps screen descriptions to DS component combinations and outputs CSpec YAML for Bridge.",
+  "bridge": {
+    "mcp_server": "plugin:bridge-ds:figma-console",
+    "requires_setup": true,
+    "setup_command": "/design-workflow setup",
+    "compiler": "lib/compiler/compile.ts",
+    "output_format": "cspec-yaml"
+  },
+  "env": {},
+  "notes": [
+    "Bridge must be set up before this agent can map to real DS components.",
+    "Run '/design-workflow setup' in Bridge to index the DS from the active Figma file.",
+    "All CSpec YAML output must pass through lib/compiler/compile.ts before execution.",
+    "No Figma API token required — Bridge connects via the MCP server."
+  ]
+}
