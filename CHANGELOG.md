@@ -5,6 +5,15 @@ Format: `YYYY-MM-DD | Category | Description`
 
 ---
 
+## 2026-04-20
+
+### Consistency pass — CLAUDE.md now reflects docs/resources/
+
+- Added `docs/resources/` to the repo structure tree and memory model table in CLAUDE.md (was missing despite being established by ADR 003)
+- Other inconsistencies noted but not changed: `fig-start` vs `figma-cli` naming drift in playbooks; undocumented `figma-cli verify` command in playbook-product-designer step 5
+
+---
+
 ## 2026-04-19 (4)
 
 ### Design knowledge base + agent wiring

@@ -32,3 +32,4 @@ What changes as a result (positive and negative).
 | 001 | CSpec YAML as inter-agent exchange format | Accepted | 2026-04-19 |
 | 002 | Bridge for generation, figma-cli for audits | Accepted | 2026-04-19 |
 | 003 | Design knowledge base in /pdfs/ + docs/resources/ | Accepted | 2026-04-19 |
+| 004 | DS Governance Playbook | Accepted | 2026-04-20 |

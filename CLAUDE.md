@@ -19,6 +19,7 @@ source-agents/
 │   ├── decisions/      # ADR / DSDR — read before proposing any design or architecture
 │   ├── architecture/   # Stack decisions, tool integrations, data formats
 │   ├── design/         # UI/UX rules, DS conventions, JSX pitfalls
+│   ├── resources/      # Synthesised knowledge base (knowledge-index.md, design-systems.md, ux-ui-reference.md)
 │   ├── workflows/      # Role-based playbooks (product designer, DS manager)
 │   └── prompts/        # Agent prompt conventions and tool assignment rules
 ├── pdfs/               # Reference library (Atomic Design, DS Handbook, etc.)
@@ -39,6 +40,7 @@ This repo IS the long-term memory. There is no hidden state between sessions.
 | `docs/decisions/` | Decision records (ADR/DSDR) — authoritative |
 | `docs/architecture/` | Stack, data flow, integration constraints |
 | `docs/design/` | UI/UX and DS conventions |
+| `docs/resources/` | Synthesised design knowledge base (ADR 003) — agents reference this, not raw PDFs |
 | `docs/workflows/` | Role playbooks |
 | `docs/prompts/` | Agent conventions, tool assignment |
 | `docs/agents.md` | Canonical agent index |

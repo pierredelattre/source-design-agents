@@ -25,37 +25,44 @@ See `figma-cli/CLAUDE.md` for the full command reference.
 ## Agents
 
 ### Stable
+Instructions written, tested, validated. Tools wired to figma-cli.
 
 | Agent | Input | Output | Knowledge |
 |-------|-------|--------|-----------|
-| `agent-a11y-audit` | Figma screen / component | WCAG AA issues table, severity, fix | `ux-ui-reference.md` §6 |
-| `agent-ds-linter` | Figma screen / component | Strict violations + soft recommendations | `design-systems.md` §2–3, §7 |
+| `agent-a11y-audit` | Figma screen or component description | WCAG AA issues table, severity, concrete fix | `ux-ui-reference.md` §6 |
+| `agent-ds-linter` | Figma screen or component description | Strict violations + soft recommendations | `design-systems.md` §2–3, §7 |
+
+### Implemented
+Instructions written and exercised. Not yet wired to figma-cli tools.
+
+| Agent | Input | Output | Knowledge |
+|-------|-------|--------|-----------|
+| `agent-ds-strategy` | Business context, team size, product maturity | DS vision, principles, governance model, KPIs, roadmap | `design-systems.md` §5–8 |
+| `agent-ux-research-synthesizer` | Raw interview notes or survey data | Personas, journey map, top insights, JTBD, open questions | `ux-ui-reference.md` §2–4 |
+| `agent-ds-librarian` | Free-text DS or UX question | Cited answer, deeper reading pointer, related agent suggestion | All `docs/resources/` |
+| `agent-ds-onboarding` | Role (designer / dev / DS manager / PM), experience level | Reading path, agent map, day-1 checklist, key vocabulary | All `docs/resources/` |
+| `agent-stakeholder-comms` | DS changes, audience, output type | Newsletter, release notes, pitch outline, or adoption guide | `design-systems.md` §6–7 |
 
 ### Planned
+Defined in `docs/agents.md`. Not yet implemented.
 
-| Agent | Input | Output | Knowledge |
-|-------|-------|--------|-----------|
-| `agent-problem-framing` | Product brief | Problem statement, hypotheses, KPIs | — |
-| `agent-ux-research-synthesizer` | Interview notes / analytics | Personas, journey map, insights, JTBD | `ux-ui-reference.md` §2–4 |
-| `agent-flow-builder` | User stories / backlog | Mermaid flows, screen checklists | — |
-| `agent-flow-qa` | Mermaid flow / screen checklist | Coverage gaps, edge cases | — |
-| `agent-wireframe-to-ds` | Screen description | CSpec YAML (Bridge format) | — |
-| `agent-component-finder` | Component description | Matching DS components + variants | — |
-| `agent-variant-builder` | Component + variant matrix | Figma variants via Bridge | — |
-| `agent-ds-strategy` | Business context, team size, maturity | DS vision, principles, governance, KPIs, roadmap | `design-systems.md` §5–8 |
-| `agent-stakeholder-comms` | DS changes, audience, output type | Newsletter, release notes, pitch outline | `design-systems.md` §6–7 |
-| `agent-figma-ds-sync` | Active Figma file | Design token JSON / CSS variables | — |
-| `agent-ds-linter` | Figma maquette | Off-DS usage report | `design-systems.md` §2–3, §7 |
-| `agent-ds-backlog-manager` | Component request list | Prioritised backlog | — |
-| `agent-ds-onboarding` | Role, DS experience level | Reading path, agent map, day-1 checklist | All `docs/resources/` |
-| `agent-usage-coach` | Screen description | Recommended DS patterns | — |
-| `agent-storybook-linker` | Figma components | Storybook story map | — |
-| `agent-doc-writer` | Maquettes + flows | Functional specs, DS docs | — |
-| `agent-design-decision-logger` | Bridge fix diff | Decision record in `docs/decisions/` | — |
-| `agent-experiment-designer` | Design decision / metric | A/B test plan, iteration roadmap | — |
-| `agent-ds-librarian` | Free-text DS/UX question | Cited answer + deeper reading pointer | All `docs/resources/` |
+| Agent | Input | Output |
+|-------|-------|--------|
+| `agent-problem-framing` | Product brief | Problem statement, assumptions, risks, success metrics (JTBD format) |
+| `agent-flow-builder` | User stories or backlog | Mermaid flow diagrams + screen checklists |
+| `agent-flow-qa` | Mermaid flow or screen checklist | Coverage gaps, edge cases, recommended additions |
+| `agent-wireframe-to-ds` | Screen description | CSpec YAML (Bridge format) |
+| `agent-component-finder` | Component description | Matching DS components with variant recommendations |
+| `agent-variant-builder` | Component name + variant matrix | Figma variants via Bridge (CSpec YAML) |
+| `agent-figma-ds-sync` | Active Figma file | Design token JSON (Style Dictionary) or CSS variables |
+| `agent-ds-backlog-manager` | Component request list | Prioritised backlog with rationale |
+| `agent-usage-coach` | Screen description or Figma selection | Recommended DS patterns, anti-patterns |
+| `agent-storybook-linker` | Figma component list + Storybook story list | Parity map per component (ok / divergence / missing) |
+| `agent-doc-writer` | Figma maquette + flow diagram | Functional spec, DS usage guidelines |
+| `agent-design-decision-logger` | Bridge fix diff | Decision record in `docs/decisions/` |
+| `agent-experiment-designer` | Design decision or metric goal | A/B test plan, measurement approach, iteration roadmap |
 
-Full spec for every agent (role, inputs, outputs, tools, rules): `docs/agents.md`
+Full spec for every agent (role, inputs, outputs, tools, playbook): `docs/agents.md`
 
 ## Knowledge base
 
@@ -75,10 +82,13 @@ The `/pdfs/` directory is the project's design reference library. It is accessed
 
 ```
 docs/
-├── decisions/    # ADR / DSDR — architectural and design decisions
-├── design/       # UI/UX rules, DS guidelines, component conventions
+├── decisions/    # ADR / DSDR — architectural and design decisions (004 records to date)
+├── design/       # UI/UX rules, DS guidelines, a11y checklist, conventions
 ├── architecture/ # Stack decisions, tool integrations, data formats
 ├── workflows/    # Process playbooks by role
+│   ├── playbook-product-designer.md
+│   ├── playbook-ds-manager.md
+│   └── ds-governance-playbook.md   # Contribution model, lifecycle, metrics, communication
 ├── prompts/      # Agent prompt conventions and templates
 └── resources/    # Knowledge base — synthesised from /pdfs/
 ```
@@ -90,6 +100,22 @@ docs/
 - They are complementary — not interchangeable.
 - CSpec YAML (Bridge format) is the canonical exchange format between agents that touch Figma.
 - See `docs/decisions/002-bridge-vs-figma-cli.md` for the rationale.
+
+## Bridge
+
+Bridge is a compiler-driven design workflow for generating Figma designs from natural language inside Claude Code. It enforces all Figma Plugin API rules through a deterministic pipeline (Parse → Resolve → Validate → Plan → Generate → Wrap), so no hardcoded values and no raw Plugin API code ever reach Figma.
+
+**Three commands, inside Claude Code:**
+
+| Command | What it does |
+|---------|-------------|
+| `make <description>` | Generate a component or screen from a description |
+| `fix` | Capture manual Figma edits as learnings for the KB |
+| `done` | Archive the design and extract reusable recipes |
+
+**Setup:** run `setup bridge` once — it scaffolds the KB under `bridge-ds/knowledge-base/` and indexes your design system from the active Figma file.
+
+The KB lives in the repo (`bridge-ds/knowledge-base/registries/`) and stays in sync via a daily cron that detects Figma drift and opens PRs. Engineers and agents can query tokens, variants, and composition rules programmatically.
 
 ## Vision
 
