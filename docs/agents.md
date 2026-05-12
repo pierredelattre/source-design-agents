@@ -15,15 +15,6 @@ Canonical list of agents in this repo. Before creating or modifying an agent, re
 
 ## Product design workflow
 
-### agent-problem-framing
-**Status:** implemented
-**Role:** Turns a raw product brief into a structured problem frame.
-**Input:** Free-text product brief
-**Output:** Markdown — problem statement, assumptions, risks, success metrics (JTBD format)
-**Tools:** None (pure text processing)
-**Playbook:** `docs/workflows/playbook-product-designer.md` §1
-**Examples:** `agents/agent-problem-framing/examples/`
-
 ### agent-ux-research-synthesizer
 **Status:** implemented
 **Role:** Synthesises raw UX research into personas, journey maps, top insights, and JTBD statements using established research methods.
@@ -42,14 +33,6 @@ Canonical list of agents in this repo. Before creating or modifying an agent, re
 **Tools:** None (pure text processing)
 **Playbook:** `docs/workflows/playbook-product-designer.md` §3
 **Examples:** `agents/agent-flow-builder/examples/`
-
-### agent-flow-qa
-**Status:** implemented
-**Role:** Reviews a flow for missing states, error paths, and empty states.
-**Input:** Mermaid flow diagram or screen checklist
-**Output:** Markdown — coverage gaps, edge cases, recommended additions
-**Tools:** None
-**Examples:** `agents/agent-flow-qa/examples/`
 
 ---
 
@@ -96,15 +79,6 @@ Canonical list of agents in this repo. Before creating or modifying an agent, re
 
 ## Design system management
 
-### agent-ds-strategy
-**Status:** implemented
-**Role:** Co-builds DS vision, principles, governance model, and KPI framework grounded in the knowledge base.
-**Input:** Business context, team size, product maturity (text)
-**Output:** Markdown — DS vision document, principles, governance recommendation, KPI list, roadmap
-**Tools:** None
-**Knowledge:** `docs/resources/design-systems.md` §5–§8
-**Examples:** `agents/agent-ds-strategy/examples/`
-
 ### agent-stakeholder-comms
 **Status:** implemented
 **Role:** Generates DS newsletters, release notes, adoption guides, and pitch decks.
@@ -141,35 +115,9 @@ Canonical list of agents in this repo. Before creating or modifying an agent, re
 **Tools:** None
 **Examples:** `agents/agent-ds-backlog-manager/examples/`
 
-### agent-ds-onboarding
-**Status:** implemented
-**Role:** Generates a role-based onboarding path for a new designer or developer.
-**Input:** Role (designer / developer / ds-manager / pm), DS experience level, optional focus area
-**Output:** Markdown — reading path, agent map, day-1 checklist, key vocabulary
-**Tools:** None
-**Knowledge:** `docs/resources/knowledge-index.md`, `docs/resources/design-systems.md`, `docs/resources/ux-ui-reference.md`
-**Playbook:** `docs/workflows/playbook-ds-manager.md` §4
-**Examples:** `agents/agent-ds-onboarding/examples/`
-
-### agent-usage-coach
-**Status:** implemented
-**Role:** Recommends DS patterns in response to a screen description or maquette.
-**Input:** Screen description or Figma selection
-**Output:** Markdown — recommended patterns, anti-patterns to avoid
-**Tools:** Bridge recipes, figma-cli
-**Examples:** `agents/agent-usage-coach/examples/`
-
 ---
 
 ## Handoff and documentation
-
-### agent-storybook-linker
-**Status:** implemented
-**Role:** Maps Figma components to Storybook stories, flags divergences.
-**Input:** Figma component list + Storybook story list
-**Output:** Markdown map — ok / divergence / missing per component
-**Tools:** figma-cli (`fig-start export storybook`)
-**Examples:** `agents/agent-storybook-linker/examples/`
 
 ### agent-doc-writer
 **Status:** implemented
@@ -182,16 +130,6 @@ Canonical list of agents in this repo. Before creating or modifying an agent, re
 ---
 
 ## Ops and logging
-
-### agent-design-decision-logger
-**Status:** implemented
-**Role:** Turns Bridge fix-workflow diffs into decision records in `docs/decisions/`.
-**Input:** Bridge fix diff (Figma correction)
-**How to trigger:** After accepting a Bridge fix that should become a global DS rule, paste the standard prompt snippet from `docs/workflows/bridge-fix-loop.md` and fill: component name, correction (`old -> new`), scope (`global` vs `local`), and reason (why this should become a rule).
-**Output:** New or updated ADR in `docs/decisions/`
-**Tools:** Bridge fix loop hook
-**Decision:** See ADR 002 for tool split; fix-loop integration documented in INIT.md §9.3
-**Examples:** `agents/agent-design-decision-logger/examples/`
 
 ### agent-experiment-designer
 **Status:** implemented

@@ -34,3 +34,4 @@ What changes as a result (positive and negative).
 | 003 | Design knowledge base in /pdfs/ + docs/resources/ | Accepted | 2026-04-19 |
 | 004 | DS Governance Playbook | Accepted | 2026-04-20 |
 | 005 | Design decision logging via agent-design-decision-logger | Accepted | 2026-04-20 |
+| 006 | ProductCard hierarchical spacing instead of flat gaps | Proposed | 2026-04-20 |
